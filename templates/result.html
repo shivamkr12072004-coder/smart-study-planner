@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Study Plan</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📚 Your AI Study Plan</h1>
+
+<h3>🕒 {{ current_time }}</h3>
+
+<table>
+
+<tr>
+
+<th>Day</th>
+<th>Subject</th>
+<th>Hours</th>
+<th>Difficulty</th>
+
+</tr>
+
+{% for item in timetable %}
+
+<tr>
+
+<td>{{ item.day }}</td>
+<td>{{ item.subject }}</td>
+<td>{{ item.hours }}</td>
+<td>{{ item.difficulty }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+<h2>📈 Progress : {{ progress }}%</h2>
+
+<div class="progress">
+
+<div class="progress-bar"
+style="width: {{ progress }}%;">
+
+</div>
+
+</div>
+
+<h2>💡 AI Study Tip</h2>
+
+<p>{{ tip }}</p>
+
+<h2>📊 Study Analytics</h2>
+
+<canvas id="myChart"></canvas>
+
+<a href="/">⬅ Back</a>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+
+type: 'pie',
+
+data: {
+
+labels: ['Study', 'Revision', 'Practice'],
+
+datasets: [{
+
+data: [50, 30, 20]
+
+}]
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
